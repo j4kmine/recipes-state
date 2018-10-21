@@ -9,7 +9,11 @@ import{ShoppingListModule} from './shopping-list/shopping-list.module';
 import {SharedModule} from './shared/shared.module';
 import {AuthModule} from './auth/auth.module';
 import {CoreModule}from './core/core.module';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects}from './auth/store/auth.effect';
+import {StoreRouterConnectingModule}from '@ngrx/router-store';
 import{reducers} from './store/app.reducer';
+import {StoreDevtoolsModule}from '@ngrx/store-devtools'
 @NgModule({
   declarations: [
     AppComponent
@@ -22,7 +26,10 @@ import{reducers} from './store/app.reducer';
     CoreModule,
     AppRoutingModule,
     SharedModule,
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    StoreRouterConnectingModule,
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
