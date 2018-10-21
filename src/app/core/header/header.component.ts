@@ -2,17 +2,25 @@ import { Component, EventEmitter, Output,OnInit} from '@angular/core';
 import {DataStorageService} from '../../shared/data-storage.service';
 import{HttpEvent, HttpEventType}from '@angular/common/http';
 import{AuthService}from '../../auth/auth.service';
+import * as fromApp from '../../store/app.reducer';
+import * as fromAuth from  '../../auth/store/auth.reducer';
+import {Store}from '@ngrx/store';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit{
   @Output() featureSelected = new EventEmitter<string>();
-  constructor(private datastorageservice:DataStorageService,private authservice:AuthService){
+  authState:Observable<fromAuth.State>;
+  constructor(private datastorageservice:DataStorageService
+    ,private authservice:AuthService
+    ,private store:Store<fromApp.AppState>
+  ){
 
   }
   ngOnInit(){
-    
+    this.authState = this.store.select('auth');
   }
   onSelect(feature: string) {
     this.featureSelected.emit(feature);

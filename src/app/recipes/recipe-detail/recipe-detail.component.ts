@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Ingredient } from '../../shared/ingredient.model';
 import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 import * as fromShoppingList from '../../shopping-list/store/shopping-list.reducer';
+import * as fromApp from '../../store/app.reducer';
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -17,7 +18,7 @@ export class RecipeDetailComponent implements OnInit {
  recipe: Recipe;
  id:number;
  shoppingListState : Observable<{ingredients:Ingredient[]}>;
-  constructor(private store :Store<fromShoppingList.AppState>,private router:Router,private recipeService: RecipeService, private shop:ShoppingListService,private route:ActivatedRoute) { }
+  constructor(private store :Store<fromApp.AppState>,private router:Router,private recipeService: RecipeService, private shop:ShoppingListService,private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(
