@@ -5,6 +5,7 @@ import{AuthService}from '../../auth/auth.service';
 import * as fromApp from '../../store/app.reducer';
 import * as fromAuth from  '../../auth/store/auth.reducer';
 import * as AuthActions from '../../auth/store/auth.actions';
+import * as RecipeActions from '../../recipes/store/recipe.actions';
 import {Store}from '@ngrx/store';
 import { Observable } from 'rxjs';
 @Component({
@@ -27,19 +28,12 @@ export class HeaderComponent implements OnInit{
     this.featureSelected.emit(feature);
   }
   onFetchData(){
-    this.datastorageservice.getRecipes();
+    this.store.dispatch(new RecipeActions.fetchRecipe());
   }
   onLogout(){
     this.store.dispatch(new AuthActions.logOut());
   }
   onSaveData(){
-   this.datastorageservice.storeRecipe().subscribe(
-      (response)=>{
-       console.log(response);
-     }
-    //  (response:HttpEvent<Object>)=>{
-    //    console.log(response.type === HttpEventType.Sent);
-    //  }
-   )
+    this.store.dispatch(new RecipeActions.storeRecipe());
   }
 }
