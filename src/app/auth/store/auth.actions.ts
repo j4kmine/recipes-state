@@ -15,6 +15,10 @@ export class trySignin implements Action{
 }
 export class signUp implements Action{
   readonly type = SIGNUP;
+  constructor(){
+  	  debugger;
+  	 
+  }
 }
 export class signIn implements Action{
   readonly type = SIGNIN;
@@ -24,7 +28,11 @@ export class logOut implements Action{
 }
 export class setToken implements Action{
   readonly type = SET_TOKEN;
-  constructor(public payload:string){}
+
+  constructor(public payload:string){
+  	  debugger;
+  	  console.log("disini" + payload);
+  }
 }
 export type Authentication = signUp | signIn | logOut | setToken | trySignup | trySignin ;
 

@@ -18,7 +18,7 @@ export function authReducer(state=IntitialState,action: Authentication.Authentic
     case(Authentication.SET_TOKEN):
     return{
       ...state,
-      toke:action.payload
+      token:action.payload
     }
     case (Authentication.LOGOUT):
     return{

@@ -29,7 +29,8 @@ export class AuthEffects{
     ]
   });
   @Effect()
-  authSignin = this.action$.ofType(AuthActions.TRY_SIGNIN)
+  authSignin = this.action$
+  .ofType(AuthActions.TRY_SIGNIN)
   .map((action:AuthActions.trySignin)=>{
 
       return action.payload;
@@ -43,7 +44,7 @@ export class AuthEffects{
   })
   .mergeMap((token:string)=>{
     this.router.navigate(['/']);
-    return[
+    return[   
       {
         type:AuthActions.SIGNIN
       },

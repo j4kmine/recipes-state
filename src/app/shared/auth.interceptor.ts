@@ -9,6 +9,7 @@ import * as fromAuth from '../auth/store/auth.reducer';
 export class AuthInterceptor implements HttpInterceptor{
     constructor(private authservice:AuthService,private store:Store<fromApp.AppState>){}
     intercept(req:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>{
+        console.log('Intercepted!', req);
         // const copied = req.clone({headers:req.headers.set('auth','auth')});
         return this.store.select('auth')
               .take(1)
